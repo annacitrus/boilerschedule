@@ -4,14 +4,16 @@ interface Props {
   courseCode: string;
   courseName: string;
   credits: number;
-  related?: string[];
+  prereqs?: string[];
+  hoveredCourse?: string | null;
+  onMouseEnter?: (courseCode: string) => void;
+  onMouseLeave?: () => void;
 }
 
-function Course({ courseCode, courseName, credits, related }: Props) {
-  const [isHovered, setIsHovered] = useState(false);
+function Course({ courseCode, courseName, credits, prereqs, hoveredCourse, onMouseEnter, onMouseLeave }: Props) {
 
   const buttonStyle = {
-    backgroundColor: isHovered ? "lightblue" : "lightgray",
+    backgroundColor: prereqs?.some(prereq => prereq === hoveredCourse) ? "lightgreen" : hoveredCourse === courseCode ? "lightblue" : "lightgray",
     transition: "background-color 0.3s",
     padding: "10px",
     margin: "10px",
@@ -21,8 +23,11 @@ function Course({ courseCode, courseName, credits, related }: Props) {
   return (
     <button
       style={buttonStyle}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+
+
+  
+      onMouseEnter={() => onMouseEnter && onMouseEnter(courseCode)}
+      onMouseLeave={() => onMouseLeave && onMouseLeave()}
     >
       <h1>{courseCode}</h1>
       <p>{courseName}</p>
