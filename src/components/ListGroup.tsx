@@ -7,7 +7,7 @@ interface ListGroupProps {
     onSelectItem: (item:string) => void;
 }
 
-function ListGroup({items, heading, onSelectItem}: ListGroupProps) {
+function ListGroup({items, heading, courses, onSelectItem}: ListGroupProps) {
 
 
   const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -22,7 +22,7 @@ function ListGroup({items, heading, onSelectItem}: ListGroupProps) {
       <ul className="list-group">
         {items.map((item, index) => (
           <li
-            className={selectedIndex === index ? 'list-group-item active' : 'list-group-item'}
+            className={selectedIndex === index || courses[item]?.related?.some(related => related === item) ? 'list-group-item active' : 'list-group-item'}
             key={item}
             onClick = {() => {
               setSelectedIndex(index);

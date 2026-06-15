@@ -1,10 +1,16 @@
+import Alert from "./components/Alert";
 import ListGroup from "./components/ListGroup";
+import Course from "./components/Course";
 
 function App() {
   const courses = {
     CS176: { name: "Data Engineering in Python", credits: 3 },
     PSY120: { name: "Elementary Psychology", credits: 3 },
-    MA161: { name: "Calculus I (or MA 165)", credits: 5, related: ["MA162", "MA261", "MA265"] },
+    MA161: {
+      name: "Calculus I (or MA 165)",
+      credits: 5,
+
+    },
     "AI Working Competency": { name: "AI Working Competency", credits: 0 },
     CS193: { name: "CS 193 (Recommended)", credits: 1 },
     CS180: {
@@ -12,7 +18,11 @@ function App() {
       credits: 4,
     },
     CS182: { name: "Foundations of Computer Science", credits: 3 },
-    MA162: { name: "Calculus II (or MA 166)", credits: 5, related: ["MA161", "MA261", "MA265"] },
+    MA162: {
+      name: "Calculus II (or MA 166)",
+      credits: 5,
+      related: ["MA161", "MA261", "MA265"],
+    },
     PSY200: { name: "Intro to Cognitive Psychology (or PSY 222)", credits: 3 },
     CS243: { name: "Artificial Intelligence Basics", credits: 3 },
     MA261: { name: "Multivariable Calculus", credits: 5 },
@@ -20,7 +30,11 @@ function App() {
     PHIL207: { name: "Ethics (or PHIL 208)", credits: 3 },
     "Science Core Selection": { name: "", credits: 3 },
     CS253: { name: "Data Structures and Algorithms for DS/AI", credits: 3 },
-    MA265: { name: "Linear Algebra (or MA 351)", credits: 3, related: ["MA261", "MA161", "MA162"] },
+    MA265: {
+      name: "Linear Algebra (or MA 351)",
+      credits: 3,
+      related: ["MA261", "MA161", "MA162"],
+    },
     MA416: { name: "Probability (or STAT 416)", credits: 3 },
     PHIL221: {
       name: "Introduction To Philosophy of Science (or PHIL 322)",
@@ -92,56 +106,15 @@ function App() {
 
   const handleSelectionItem = (item: string) => console.log(item);
   return (
-    <div>
-      <ListGroup
-        items={ArtificialIntelligenceSem1}
-        heading="Semester 1"
-        courses = {courses}
-        onSelectItem={handleSelectionItem}
+    // for each course, pass the course code, course name, credits, and realted courses (if any) as props to the Course component
+    Object.entries(courses).map(([courseCode, course]) => (
+      <Course
+        key={courseCode}
+        courseCode={courseCode}
+        courseName={course.name}
+        credits={course.credits}
       />
-      <ListGroup
-        items={ArtificialIntelligenceSem2}
-        heading="Semester 2"
-        courses = {courses}
-        onSelectItem={handleSelectionItem}
-      />
-      <ListGroup
-        items={ArtificialIntelligenceSem3}
-        heading="Semester 3"
-        courses = {courses}
-        onSelectItem={handleSelectionItem}
-      />
-      <ListGroup
-        items={ArtificialIntelligenceSem4}
-        heading="Semester 4"
-        courses = {courses}
-        onSelectItem={handleSelectionItem}
-      />
-      <ListGroup
-        items={ArtificialIntelligenceSem5}
-        heading="Semester 5"
-        courses = {courses}
-        onSelectItem={handleSelectionItem}
-      />
-      <ListGroup
-        items={ArtificialIntelligenceSem6}
-        heading="Semester 6"
-        courses = {courses}
-        onSelectItem={handleSelectionItem}
-      />
-      <ListGroup
-        items={ArtificialIntelligenceSem7}
-        heading="Semester 7"
-        courses = {courses}
-        onSelectItem={handleSelectionItem}
-      />
-      <ListGroup
-        items={ArtificialIntelligenceSem8}
-        heading="Semester 8"
-        courses = {courses}
-        onSelectItem={handleSelectionItem}
-      />
-    </div>
+    ))
   );
 }
 
