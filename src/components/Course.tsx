@@ -17,6 +17,8 @@ function Course({ courseCode, courseName, credits, prereqs, hoveredCourse, onMou
     transition: "background-color 0.3s",
     padding: "10px",
     margin: "10px",
+    width: "100px",
+    height: "100px",
     cursor: "pointer",
   } as const;
 
