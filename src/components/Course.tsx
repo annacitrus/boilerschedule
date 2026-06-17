@@ -10,31 +10,31 @@ interface Props {
   onMouseLeave?: () => void;
 }
 
-function Course({ courseCode, courseName, credits, prereqs, hoveredCourse, onMouseEnter, onMouseLeave }: Props) {
-
-  const buttonStyle = {
-    backgroundColor: prereqs?.some(prereq => prereq === hoveredCourse) ? "lightgreen" : hoveredCourse === courseCode ? "lightblue" : "lightgray",
-    transition: "background-color 0.3s",
-    padding: "10px",
-    margin: "10px",
-    width: "100px",
-    height: "100px",
-    cursor: "pointer",
-  } as const;
+function Course({
+  courseCode,
+  courseName,
+  credits,
+  prereqs,
+  hoveredCourse,
+  onMouseEnter,
+  onMouseLeave,
+}: Props) {
+  const backgroundColor = prereqs?.some((prereq) => prereq === hoveredCourse)
+    ? "lightgreen"
+    : hoveredCourse === courseCode
+      ? "lightblue"
+      : "white";
 
   return (
-    <button
-      style={buttonStyle}
-
-
-  
+    <div
+      className="course"
+      style={{ backgroundColor, transition: "background-color 0.25s" }}
       onMouseEnter={() => onMouseEnter && onMouseEnter(courseCode)}
       onMouseLeave={() => onMouseLeave && onMouseLeave()}
     >
-      <h1>{courseCode}</h1>
+      <h6>{courseCode + " (" + credits + ")"}</h6>
       <p>{courseName}</p>
-      <p>Credits: {credits}</p>
-    </button>
+    </div>
   );
 }
 
