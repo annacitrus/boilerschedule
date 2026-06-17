@@ -7,10 +7,8 @@ type CourseInfo = {
   prereqs?: string[];
 };
 
-function ScienceArtificalIntelligence() {
+function DataScience() {
   const courses: Record<string, CourseInfo> = {
-    CS176: { name: "Data Engineering in Python", credits: 3 },
-    PSY120: { name: "Elementary Psychology", credits: 3 },
     MA161: {
       name: "Calculus I (or MA 165)",
       credits: 5,
@@ -21,33 +19,18 @@ function ScienceArtificalIntelligence() {
       name: "Problem Solving and Object-Oriented Programming",
       credits: 4,
     },
-    CS182: { name: "Foundations of Computer Science", credits: 3 },
+    CS182: { name: "Foundations of Computer Science", credits: 3, prereqs: ["CS180"] },
     MA162: {
       name: "Calculus II (or MA 166)",
       credits: 5,
       prereqs: ["MA161"],
-    },
-    PSY200: {
-      name: "Intro to Cognitive Psychology (or PSY 222)",
-      credits: 3,
-      prereqs: ["PSY120"],
-    },
-    CS243: {
-      name: "Artificial Intelligence Basics",
-      credits: 3,
-      prereqs: ["CS180", "CS182", "MA161"],
     },
     MA261: {
       name: "Multivariable Calculus",
       credits: 5,
       prereqs: ["MA161", "MA162"],
     },
-    STAT350: {
-      name: "Statistics (or STAT 511)",
-      credits: 3,
-      prereqs: ["MA162", "MA161"],
-    },
-    PHIL207: { name: "Ethics (or PHIL 208)", credits: 3 },
+    PHIL207: { name: "Ethics (or PHIL 208 or ILS 230)", credits: 3 },
     "Science Core Selection": { name: "", credits: 3 },
     CS253: {
       name: "Data Structures and Algorithms for DS/AI",
@@ -191,4 +174,4 @@ function ScienceArtificalIntelligence() {
   );
 }
 
-export default ScienceArtificalIntelligence;
+export default DataScience;

@@ -31,9 +31,8 @@ function Course({ courseCode, courseName, credits, prereqs, hoveredCourse, onMou
       onMouseEnter={() => onMouseEnter && onMouseEnter(courseCode)}
       onMouseLeave={() => onMouseLeave && onMouseLeave()}
     >
-      <h1>{courseCode}</h1>
+      <h6>{courseCode + " (" + credits + ")"}</h6>
       <p>{courseName}</p>
-      <p>Credits: {credits}</p>
     </button>
   );
 }
