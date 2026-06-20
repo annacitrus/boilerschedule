@@ -1,0 +1,181 @@
+import Course from "../components/Course";
+import { useState } from "react";
+
+type CourseInfo = {
+  name: string;
+  credits: number;
+  prereqs?: string[];
+};
+
+function ComputerEngineering() {
+  const courses: Record<string, CourseInfo> = {
+    "Intro to Engineering I": { name: "Intro to Engineering I", credits: 2 },
+    "Written Communication": { name: "Written Communication", credits: 3 },
+    CHM11510: { name: "General Chemistry I", credits: 3 },
+    CHM11520: { name: "General Chemistry I - Laboratory", credits: 1, prereqs: ["CHM11510"] },
+    MA16100: { name: "Plane Analytic Geometry And Calculus I", credits: 5 },
+    "Intro to Engineering II": { name: "Intro to Engineering II", credits: 2 },
+    "Oral Communication": { name: "Oral Communication", credits: 3 },
+    PHYS17200: { name: "Modern Mechanics", credits: 4 },
+    CS15900: { name: "C Programming", credits: 3 },
+    MA16200: { name: "Plane Analytic Geometry And Calculus II", credits: 5, prereqs: ["MA16100"] },
+    ECE29401: { name: "Electrical And Computer Engineering Sophomore Seminar", credits: 1 },
+    ECE20001: { name: "Electrical Engineering Fundamentals I", credits: 3, prereqs: ["MA16100"] },
+    ECE20007: { name: "Electrical Engineering Fundamentals I Lab", credits: 1, prereqs: ["MA16100", "ECE20001"] },
+    ECE20869: { name: "Discrete Math For Computer Engineering", credits: 3, prereqs: ["MA16100"] },
+    ECE26400: { name: "Advanced C Programming", credits: 3, prereqs: ["CS15900"] },
+    MA26100: { name: "Multivariate Calculus", credits: 4, prereqs: ["MA16100", "MA16200"] },
+    ECE20002: { name: "Electrical Engineering Fundamentals II", credits: 3, prereqs: ["MA16100", "ECE20001"] },
+    ECE20875: { name: "Data Science Using Python", credits: 3, prereqs: ["CS15900"] },
+    ECE27000: {
+      name: "Introduction To Digital System Design",
+      credits: 4,
+      prereqs: ["MA16100", "CS15900", "ECE26400", "ECE20001", "ECE20007"],
+    },
+    MA26600: { name: "Ordinary Differential Equations", credits: 3, prereqs: ["MA16100", "MA16200"] },
+    "General Education I": { name: "General Education I", credits: 3 },
+    ECE30100: {
+      name: "Signals And Systems",
+      credits: 3,
+      prereqs: ["MA16100", "MA16200", "MA26100", "ECE20001", "ECE20007", "ECE20002"],
+    },
+    ECE36200: {
+      name: "Microprocessor Systems And Interfacing",
+      credits: 4,
+      prereqs: ["MA16100", "CS15900", "ECE26400", "ECE20001", "ECE20007", "ECE27000"],
+    },
+    ECE36800: {
+      name: "Data Structures",
+      credits: 3,
+      prereqs: ["MA16100", "CS15900", "ECE26400", "ECE20869"],
+    },
+    ECE39401: { name: "Communication & Collaboration", credits: 1 },
+    "Science Selective": { name: "Science Selective", credits: 3 },
+    "General Education II": { name: "General Education II", credits: 3 },
+    ECE30200: {
+      name: "Probabilistic Methods In Electrical And Computer Engineering",
+      credits: 3,
+      prereqs: ["MA16100", "MA16200", "MA26100", "ECE20001", "ECE20007", "ECE20002", "ECE30100"],
+    },
+    PHYS27200: { name: "Electric And Magnetic Interactions", credits: 4, prereqs: ["PHYS17200"] },
+    "CE Selective 1": { name: "Computer Engineering Selectives", credits: 7 },
+    "General Education III": { name: "General Education III", credits: 3 },
+    "Senior Design I": { name: "Senior Design", credits: 2 },
+    "CE Selective 2": { name: "Computer Engineering Selectives", credits: 3 },
+    "General Education IV": { name: "General Education IV", credits: 3 },
+    "Complementary Selective": { name: "Complementary Selective", credits: 1 },
+    MA26500: { name: "Linear Algebra", credits: 3, prereqs: ["MA16100", "MA16200"] },
+    ECE49401: { name: "Professional Communication Capstone", credits: 1 },
+    "Senior Design II": { name: "Senior Design", credits: 2 },
+    "CE Selective 3": { name: "Computer Engineering Selectives", credits: 6 },
+    "Engineering Breadth Selective": { name: "Engineering Breadth Selective", credits: 3 },
+    "General Education V": { name: "General Education V", credits: 3 },
+    "General Education VI": { name: "General Education VI", credits: 3 },
+  };
+
+  const ComputerEngineeringSem1 = [
+    "Intro to Engineering I",
+    "Written Communication",
+    "CHM11510",
+    "CHM11520",
+    "MA16100",
+  ];
+  const ComputerEngineeringSem2 = [
+    "Intro to Engineering II",
+    "Oral Communication",
+    "PHYS17200",
+    "CS15900",
+    "MA16200",
+  ];
+  const ComputerEngineeringSem3 = [
+    "ECE29401",
+    "ECE20001",
+    "ECE20007",
+    "ECE20869",
+    "ECE26400",
+    "MA26100",
+  ];
+  const ComputerEngineeringSem4 = [
+    "ECE20002",
+    "ECE20875",
+    "ECE27000",
+    "MA26600",
+    "General Education I",
+  ];
+  const ComputerEngineeringSem5 = [
+    "ECE30100",
+    "ECE36200",
+    "ECE36800",
+    "ECE39401",
+    "Science Selective",
+    "General Education II",
+  ];
+  const ComputerEngineeringSem6 = [
+    "ECE30200",
+    "PHYS27200",
+    "CE Selective 1",
+    "General Education III",
+  ];
+  const ComputerEngineeringSem7 = [
+    "Senior Design I",
+    "CE Selective 2",
+    "General Education IV",
+    "Complementary Selective",
+    "MA26500",
+  ];
+  const ComputerEngineeringSem8 = [
+    "ECE49401",
+    "Senior Design II",
+    "CE Selective 3",
+    "Engineering Breadth Selective",
+    "General Education V",
+    "General Education VI",
+  ];
+
+  const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
+
+  const onMouseEnter = (courseCode: string) => {
+    setHoveredCourse(courseCode);
+  };
+
+  const onMouseLeave = () => {
+    setHoveredCourse(null);
+  };
+
+  const renderSemester = (title: string, semesterCourses: string[]) => (
+    <div className="semester">
+      <h2>{title}</h2>
+      {semesterCourses.map((courseCode, index) => {
+        const course = courses[courseCode];
+
+        return (
+          <Course
+            key={courseCode + index}
+            courseCode={courseCode}
+            courseName={course.name}
+            credits={course.credits}
+            prereqs={course.prereqs}
+            hoveredCourse={hoveredCourse}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+          />
+        );
+      })}
+    </div>
+  );
+
+  return (
+    <div className="semesters-container">
+      {renderSemester("Fall 1st Year", ComputerEngineeringSem1)}
+      {renderSemester("Spring 1st Year", ComputerEngineeringSem2)}
+      {renderSemester("Fall 2nd Year", ComputerEngineeringSem3)}
+      {renderSemester("Spring 2nd Year", ComputerEngineeringSem4)}
+      {renderSemester("Fall 3rd Year", ComputerEngineeringSem5)}
+      {renderSemester("Spring 3rd Year", ComputerEngineeringSem6)}
+      {renderSemester("Fall 4th Year", ComputerEngineeringSem7)}
+      {renderSemester("Spring 4th Year", ComputerEngineeringSem8)}
+    </div>
+  );
+}
+
+export default ComputerEngineering;
