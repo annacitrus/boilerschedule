@@ -9,124 +9,170 @@ type CourseInfo = {
 
 function DataScience() {
   const courses: Record<string, CourseInfo> = {
-    MA161: {
-      name: "Calculus I (or MA 165)",
-      credits: 5,
-    },
-    "AI Working Competency": { name: "AI Working Competency", credits: 0 },
-    CS193: { name: "CS 193 (Recommended)", credits: 1 },
-    CS180: {
-      name: "Problem Solving and Object-Oriented Programming",
+    CS18000: {
+      name: "Problem Solving And Object-Oriented Programming",
       credits: 4,
     },
-    CS182: { name: "Foundations of Computer Science", credits: 3, prereqs: ["CS180"] },
-    MA162: {
-      name: "Calculus II (or MA 166)",
-      credits: 5,
-      prereqs: ["MA161"],
-    },
-    MA261: {
-      name: "Multivariable Calculus",
-      credits: 5,
-      prereqs: ["MA161", "MA162"],
-    },
-    PHIL207: { name: "Ethics (or PHIL 208 or ILS 230)", credits: 3 },
-    "Science Core Selection": { name: "", credits: 3 },
-    CS253: {
-      name: "Data Structures and Algorithms for DS/AI",
+    CS18200: { name: "Foundations Of Computer Science", credits: 3 },
+    CS19300: { name: "Tools (Recommended)", credits: 1 },
+    CS24200: {
+      name: "Introduction To Data Science",
       credits: 3,
-      prereqs: ["CS176", "CS180", "CS182", "MA161"],
+      prereqs: ["CS18000", "CS38003"],
     },
-    MA265: {
-      name: "Linear Algebra (or MA 351)",
+    CS25300: {
+      name: "Data Structures And Algorithms For DS/AI",
       credits: 3,
-      prereqs: ["MA161", "MA162"],
+      prereqs: ["CS18000", "CS18200", "MA16100"],
     },
-    MA416: {
-      name: "Probability (or STAT 416)",
-      credits: 3,
-      prereqs: ["MA162", "MA161", "MA261"],
-    },
-    PHIL221: {
-      name: "Introduction To Philosophy of Science (or PHIL 322)",
-      credits: 3,
-    },
-    CS373: {
+    CS37300: {
       name: "Data Mining And Machine Learning",
       credits: 3,
-      prereqs: ["CS182", "CS180", "CS253", "STAT350"],
+      prereqs: [
+        "CS25300",
+        "STAT35500",
+        "CS18000",
+        "CS18200",
+        "MA16100",
+        "MA16200",
+      ],
     },
-    CS381: {
-      name: "Introduction To The Analysis Of Algorithms",
+    CS38003: { name: "Python Programming", credits: 1, prereqs: ["CS18000"] },
+    CS44000: {
+      name: "Large Scale Data Analytics",
       credits: 3,
-      prereqs: ["CS253", "CS180", "CS182", "MA161", "MA 162", "MA261"],
+      prereqs: [
+        "CS37300",
+        "CS25300",
+        "STAT35500",
+        "CS18000",
+        "CS18200",
+        "MA16100",
+        "MA16200",
+      ],
     },
-    CS471: {
-      name: "Introduction To Artificial Intelligence",
+    CS44100: {
+      name: "Data Science Capstone",
       credits: 3,
-      prereqs: ["CS176", "CS180", "CS182", "MA161", "CS253"],
+      prereqs: [
+        "CS37300",
+        "CS25300",
+        "STAT35500",
+        "CS18000",
+        "CS18200",
+        "MA16100",
+        "MA16200",
+      ],
     },
-    "AI Capstone Experience": { name: "", credits: 3 },
-    "CS Selective": { name: "", credits: 3 },
-    "Philosophy Selective": { name: "", credits: 3 },
-    Elective: { name: "", credits: 3 },
+    MA16100: { name: "Calculus I (or MA 16500)", credits: 5 },
+    MA16200: {
+      name: "Calculus II (or MA 16600)",
+      credits: 5,
+      prereqs: ["MA16100"],
+    },
+    MA26100: {
+      name: "Multivariate Calculus (or MA 27101)",
+      credits: 4,
+      prereqs: ["MA16200", "MA16100"],
+    },
+    MA35100: {
+      name: "Elementary Linear Algebra",
+      credits: 3,
+      prereqs: ["MA16200", "MA16100"],
+    },
+    STAT35500: {
+      name: "Statistics For Data Science",
+      credits: 3,
+      prereqs: ["MA16200", "MA16100"],
+    },
+    STAT41600: {
+      name: "Probability",
+      credits: 3,
+      prereqs: ["MA26100", "MA16200", "MA16100"],
+    },
+    STAT41700: {
+      name: "Statistical Theory",
+      credits: 3,
+      prereqs: ["STAT41600", "MA26100", "MA16200", "MA16100"],
+    },
+    "AI Working Competency": { name: "AI Working Competency", credits: 2 },
+    "Ethics Selective": {
+      name: "Ethics Selective (ILS 23000 / PHIL 20700 / PHIL 20800)",
+      credits: 3,
+    },
+    "CS Selective": { name: "CS Selective", credits: 3 },
+    "Statistics Selective": { name: "Statistics Selective", credits: 3 },
+    "Written Communication": { name: "Written Communication", credits: 3 },
+    "Language Culture": { name: "Language or Culture", credits: 3 },
+    "General Education": { name: "General Education", credits: 3 },
+    "Technical Writing": {
+      name: "Technical Writing & Presentation",
+      credits: 3,
+    },
+    "Great Issues in Science": { name: "Great Issues in Science", credits: 3 },
+    "Lab Science": { name: "Lab Science", credits: 3 },
+    Elective: { name: "Elective", credits: 3 },
   };
 
-  const ArtificialIntelligenceSem1 = [
-    "CS176",
-    "PSY120",
-    "MA161",
-    "Science Core Selection",
+  const DataScienceSem1 = [
+    "CS18000",
+    "MA16100",
+    "Written Communication",
+    "Elective",
+    "CS19300",
+  ];
+  const DataScienceSem2 = [
+    "CS18200",
+    "CS38003",
+    "MA16200",
+    "Language Culture",
+    "General Education",
+    "Elective",
+  ];
+  const DataScienceSem3 = [
+    "STAT35500",
+    "CS24200",
+    "MA26100",
     "AI Working Competency",
-    "CS193",
+    "Language Culture",
   ];
-  const ArtificialIntelligenceSem2 = ["CS180", "CS182", "MA162", "PSY200"];
-  const ArtificialIntelligenceSem3 = [
-    "CS243",
-    "MA261",
-    "STAT350",
-    "PHIL207",
-    "Science Core Selection",
+  const DataScienceSem4 = [
+    "CS25300",
+    "MA35100",
+    "STAT41600",
+    "Ethics Selective",
+    "Language Culture",
+    "Elective",
   ];
-  const ArtificialIntelligenceSem4 = [
-    "CS253",
-    "MA265",
-    "MA416",
-    "PHIL221",
-    "Science Core Selection",
+  const DataScienceSem5 = [
+    "CS37300",
+    "STAT41700",
+    "Technical Writing",
+    "General Education",
+    "Elective",
   ];
-  const ArtificialIntelligenceSem5 = [
-    "CS373",
+  const DataScienceSem6 = [
     "CS Selective",
-    "Philosophy Selective",
-    "Science Core Selection",
-    "Elective",
-  ];
-  const ArtificialIntelligenceSem6 = [
-    "CS381",
-    "Science Core Selection",
-    "Science Core Selection",
+    "Statistics Selective",
+    "Great Issues in Science",
     "Elective",
     "Elective",
   ];
-  const ArtificialIntelligenceSem7 = [
-    "CS471",
+  const DataScienceSem7 = [
+    "CS44000",
     "CS Selective",
-    "Science Core Selection",
-    "Science Core Selection",
-    "Science Core Selection",
-  ];
-  const ArtificialIntelligenceSem8 = [
-    "AI Capstone Experience",
-    "CS Selective",
-    "Science Core Selection",
-    "Science Core Selection",
+    "Lab Science",
+    "Elective",
+    "Elective",
     "Elective",
   ];
-  const relatedCourses: { [key: string]: string[] } = {
-    CS243: ["CS373", "CS471"],
-    "MA 161": ["MA162", "MA261", "MA265"],
-  };
+  const DataScienceSem8 = [
+    "CS44100",
+    "Lab Science",
+    "Elective",
+    "Elective",
+    "Elective",
+  ];
 
   const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
 
@@ -141,12 +187,12 @@ function DataScience() {
   const renderSemester = (title: string, semesterCourses: string[]) => (
     <div className="semester">
       <h2>{title}</h2>
-      {semesterCourses.map((courseCode) => {
+      {semesterCourses.map((courseCode, index) => {
         const course = courses[courseCode];
 
         return (
           <Course
-            key={courseCode}
+            key={courseCode + index}
             courseCode={courseCode}
             courseName={course.name}
             credits={course.credits}
@@ -162,14 +208,14 @@ function DataScience() {
 
   return (
     <div className="semesters-container">
-      {renderSemester("Semester 1", ArtificialIntelligenceSem1)}
-      {renderSemester("Semester 2", ArtificialIntelligenceSem2)}
-      {renderSemester("Semester 3", ArtificialIntelligenceSem3)}
-      {renderSemester("Semester 4", ArtificialIntelligenceSem4)}
-      {renderSemester("Semester 5", ArtificialIntelligenceSem5)}
-      {renderSemester("Semester 6", ArtificialIntelligenceSem6)}
-      {renderSemester("Semester 7", ArtificialIntelligenceSem7)}
-      {renderSemester("Semester 8", ArtificialIntelligenceSem8)}
+      {renderSemester("Fall 1st Year", DataScienceSem1)}
+      {renderSemester("Spring 1st Year", DataScienceSem2)}
+      {renderSemester("Fall 2nd Year", DataScienceSem3)}
+      {renderSemester("Spring 2nd Year", DataScienceSem4)}
+      {renderSemester("Fall 3rd Year", DataScienceSem5)}
+      {renderSemester("Spring 3rd Year", DataScienceSem6)}
+      {renderSemester("Fall 4th Year", DataScienceSem7)}
+      {renderSemester("Spring 4th Year", DataScienceSem8)}
     </div>
   );
 }
