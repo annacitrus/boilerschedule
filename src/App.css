@@ -1,69 +1,70 @@
 /* Container for all semesters */
 .semesters-container {
-  display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
-  padding: 5px;
+  display: flex;            /* makes children (semesters) lay out as flex items */
+  flex-direction: column;      /* stacks semesters top-to-bottom vertically */
+  gap: 5px;                 /* space between each semester column */
+  padding: 5px;             /* space between the edge of the screen and the semesters */
 }
 
 /* Individual semester div */
 .semester {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  border: 1px solid #ccc;
-  padding: 5px;
-  border-radius: 8px;
-  min-width: 175px;
-  background-color: #f9f9f9;
+  display: flex;            /* makes children (courses) lay out as flex items */
+  flex-direction: column;     /* stacks courses top-to-bottom within each semester */
+  gap: 5px;                 /* space between each course card */
+  border: 1px solid #ccc;  /* light grey border around the semester box */
+  padding: 5px;             /* space between the border and the course cards inside */
+  border-radius: 8px;       /* rounds the corners of the semester box */
+  min-width: 175px;         /* prevents semester columns from getting too narrow */
+  background-color: #f9f9f9; /* light grey background to distinguish semesters */
 }
 
 .semester h2 {
-  margin: 0 0 10px 0;
-  font-size: 18px;
-  text-align: center;
+  margin: 0 0 10px 0;       /* removes default top/side margin, adds space below the title */
+  font-size: 18px;           /* size of the semester title text */
+  text-align: center;        /* centers the semester title */
 }
 
-/* Courses stack vertically */
 .course {
-  padding: 10px;
-  border: 1px solid #ddd;
-  background-color: white;
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
-  max-width: 125px;
+  padding: 10px;             /* space between the course border and its text */
+  width: 100%;               /* stretches the course card to fill the semester column width */
+  box-sizing: border-box;    /* makes padding included in the 100% width, preventing overflow */
+  cursor: pointer;           /* shows a hand cursor on hover */
+  transition: background-color 0.3s; /* animates background color changes smoothly over 0.3 seconds */
+  border: 1px solid #ddd;    /* light grey border around each course card */
+  border-radius: 4px;        /* slightly rounds the corners of the course card */
+  display: flex;             /* makes the course code and name lay out as flex items */
+  flex-direction: column;    /* stacks course code above course name */
+  align-items: flex-start;   /* left-aligns text inside the card */
+  gap: 4px;                  /* space between course code and course name */
 }
 
 .course h6 {
-  margin: 0;
-  font-size: 14px;
+  margin: 0;                 /* removes default browser margin around the course code */
+  font-size: 12px;           /* size of the course code text */
 }
 
 .course p {
-  margin: 0;
-  font-size: 12px;
-  color: #333;
+  margin: 0;                 /* removes default browser margin around the course name */
+  font-size: 11px;           /* size of the course name text, slightly smaller than the code */
+  color: #333;               /* dark grey color, softer than pure black */
 }
 
 .majors-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: flex;             /* makes major buttons lay out as flex items */
+  flex-wrap: wrap;           /* allows buttons to wrap to a new row if there are too many */
 }
 
 .majors-container a {
-  width: 20%;
-  box-sizing: border-box;
-  display: flex;
+  width: 20%;                /* each link takes up 20% of the row, so 5 buttons fit per row */
+  box-sizing: border-box;    /* makes padding included in the 20% width */
+  display: flex;             /* allows the button inside to stretch to fill the link's full size */
 }
 
 .major {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  padding: 10px;
-  width: 100%;
-  height: 100%;
+  display: flex;             /* lays out button contents as flex items */
+  flex-direction: row;       /* arranges button content left-to-right */
+  gap: 10px;                 /* space between items inside the button */
+  padding: 10px;             /* space between the button border and its content */
+  width: 100%;               /* stretches the button to fill the full link width */
+  height: 100%;              /* stretches the button to fill the full link height */
 }

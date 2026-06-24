@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 interface Props {
   courseCode: string;
@@ -12,22 +11,13 @@ interface Props {
 
 function Course({ courseCode, courseName, credits, prereqs, hoveredCourse, onMouseEnter, onMouseLeave }: Props) {
 
-  const buttonStyle = {
-    backgroundColor: prereqs?.some(prereq => prereq === hoveredCourse && courseCode !== "Elective") ? "lightgreen" : hoveredCourse === courseCode ? "lightblue" : "lightgray",
-    transition: "background-color 0.3s",
-    padding: "10px",
-    margin: "10px",
-    width: "100px",
-    height: "100px",
-    cursor: "pointer",
-  } as const;
+  const isHighlighted = prereqs?.some(prereq => prereq === hoveredCourse && courseCode !== "Elective");
+  const backgroundColor = isHighlighted ? "lightgreen" : hoveredCourse === courseCode ? "lightblue" : "lightgray";
 
   return (
     <button
-      style={buttonStyle}
-
-
-  
+      className="course"
+      style={{ backgroundColor }}
       onMouseEnter={() => onMouseEnter && onMouseEnter(courseCode)}
       onMouseLeave={() => onMouseLeave && onMouseLeave()}
     >
