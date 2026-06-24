@@ -13,7 +13,7 @@ interface Props {
 function Course({ courseCode, courseName, credits, prereqs, hoveredCourse, onMouseEnter, onMouseLeave }: Props) {
 
   const buttonStyle = {
-    backgroundColor: prereqs?.some(prereq => prereq === hoveredCourse) ? "lightgreen" : hoveredCourse === courseCode ? "lightblue" : "lightgray",
+    backgroundColor: prereqs?.some(prereq => prereq === hoveredCourse && courseCode !== "Elective") ? "lightgreen" : hoveredCourse === courseCode ? "lightblue" : "lightgray",
     transition: "background-color 0.3s",
     padding: "10px",
     margin: "10px",

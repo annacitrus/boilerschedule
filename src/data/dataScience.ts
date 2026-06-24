@@ -1,14 +1,7 @@
-import Course from "./Course";
-import { useState } from "react";
+import { MajorData } from "./types";
 
-type CourseInfo = {
-  name: string;
-  credits: number;
-  prereqs?: string[];
-};
-
-function DataScience() {
-  const courses: Record<string, CourseInfo> = {
+const dataScience: MajorData = {
+  courses: {
     CS18000: {
       name: "Problem Solving And Object-Oriented Programming",
       credits: 4,
@@ -112,112 +105,41 @@ function DataScience() {
     "Great Issues in Science": { name: "Great Issues in Science", credits: 3 },
     "Lab Science": { name: "Lab Science", credits: 3 },
     Elective: { name: "Elective", credits: 3 },
-  };
+  },
+  semesters: [
+    {
+      label: "Semester 1",
+      courses: ["CS18000", "MA16100", "Written Communication", "Elective", "CS19300"],
+    },
+    {
+      label: "Semester 2",
+      courses: ["CS18200", "CS38003", "MA16200", "Language Culture", "General Education", "Elective"],
+    },
+    {
+      label: "Semester 3",
+      courses: ["STAT35500", "CS24200", "MA26100", "AI Working Competency", "Language Culture"],
+    },
+    {
+      label: "Semester 4",
+      courses: ["CS25300", "MA35100", "STAT41600", "Ethics Selective", "Language Culture", "Elective"],
+    },
+    {
+      label: "Semester 5",
+      courses: ["CS37300", "STAT41700", "Technical Writing", "General Education", "Elective"],
+    },
+    {
+      label: "Semester 6",
+      courses: ["CS Selective", "Statistics Selective", "Great Issues in Science", "Elective", "Elective"],
+    },
+    {
+      label: "Semester 7",
+      courses: ["CS44000", "CS Selective", "Lab Science", "Elective", "Elective", "Elective"],
+    },
+    {
+      label: "Semester 8",
+      courses: ["CS44100", "Lab Science", "Elective", "Elective", "Elective"],
+    },
+  ],
+};
 
-  const DataScienceSem1 = [
-    "CS18000",
-    "MA16100",
-    "Written Communication",
-    "Elective",
-    "CS19300",
-  ];
-  const DataScienceSem2 = [
-    "CS18200",
-    "CS38003",
-    "MA16200",
-    "Language Culture",
-    "General Education",
-    "Elective",
-  ];
-  const DataScienceSem3 = [
-    "STAT35500",
-    "CS24200",
-    "MA26100",
-    "AI Working Competency",
-    "Language Culture",
-  ];
-  const DataScienceSem4 = [
-    "CS25300",
-    "MA35100",
-    "STAT41600",
-    "Ethics Selective",
-    "Language Culture",
-    "Elective",
-  ];
-  const DataScienceSem5 = [
-    "CS37300",
-    "STAT41700",
-    "Technical Writing",
-    "General Education",
-    "Elective",
-  ];
-  const DataScienceSem6 = [
-    "CS Selective",
-    "Statistics Selective",
-    "Great Issues in Science",
-    "Elective",
-    "Elective",
-  ];
-  const DataScienceSem7 = [
-    "CS44000",
-    "CS Selective",
-    "Lab Science",
-    "Elective",
-    "Elective",
-    "Elective",
-  ];
-  const DataScienceSem8 = [
-    "CS44100",
-    "Lab Science",
-    "Elective",
-    "Elective",
-    "Elective",
-  ];
-
-  const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
-
-  const onMouseEnter = (courseCode: string) => {
-    setHoveredCourse(courseCode);
-  };
-
-  const onMouseLeave = () => {
-    setHoveredCourse(null);
-  };
-
-  const renderSemester = (title: string, semesterCourses: string[]) => (
-    <div className="semester">
-      <h2>{title}</h2>
-      {semesterCourses.map((courseCode, index) => {
-        const course = courses[courseCode];
-
-        return (
-          <Course
-            key={courseCode + index}
-            courseCode={courseCode}
-            courseName={course.name}
-            credits={course.credits}
-            prereqs={course.prereqs}
-            hoveredCourse={hoveredCourse}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-          />
-        );
-      })}
-    </div>
-  );
-
-  return (
-    <div className="semesters-container">
-      {renderSemester("Fall 1st Year", DataScienceSem1)}
-      {renderSemester("Spring 1st Year", DataScienceSem2)}
-      {renderSemester("Fall 2nd Year", DataScienceSem3)}
-      {renderSemester("Spring 2nd Year", DataScienceSem4)}
-      {renderSemester("Fall 3rd Year", DataScienceSem5)}
-      {renderSemester("Spring 3rd Year", DataScienceSem6)}
-      {renderSemester("Fall 4th Year", DataScienceSem7)}
-      {renderSemester("Spring 4th Year", DataScienceSem8)}
-    </div>
-  );
-}
-
-export default DataScience;
+export default dataScience;
