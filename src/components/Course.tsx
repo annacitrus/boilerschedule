@@ -1,33 +1,41 @@
-import { useState } from "react";
-
 interface Props {
+  id: string;
   courseCode: string;
   courseName: string;
   credits: number;
   prereqs?: string[];
+  hoveredId?: string | null;
   hoveredCourse?: string | null;
   onMouseEnter?: (courseCode: string) => void;
   onMouseLeave?: () => void;
 }
 
-function Course({ courseCode, courseName, credits, prereqs, hoveredCourse, onMouseEnter, onMouseLeave }: Props) {
+function Course({
+  id,
+  courseCode,
+  courseName,
+  credits,
+  prereqs,
+  hoveredId,
+  hoveredCourse,
+  onMouseEnter,
+  onMouseLeave,
+}: Props) {
+  const isHighlighted = prereqs?.some(
+    (prereq) => prereq === hoveredCourse
+  );
+  const backgroundColor = isHighlighted
+    ? "lightgreen"
+    : id === hoveredId
+      ? "lightblue"
+      : "lightgray";
 
-  const buttonStyle = {
-    backgroundColor: prereqs?.some(prereq => prereq === hoveredCourse && courseCode !== "Elective") ? "lightgreen" : hoveredCourse === courseCode ? "lightblue" : "lightgray",
-    transition: "background-color 0.3s",
-    padding: "10px",
-    margin: "10px",
-    width: "100px",
-    height: "100px",
-    cursor: "pointer",
-  } as const;
+  // backgroundColor: prereqs?.some(prereq => prereq === hoveredCourse) ? "lightgreen" : hoveredCourse === courseCode ? "lightblue" : "lightgray",
 
   return (
     <button
-      style={buttonStyle}
-
-
-  
+      className="course"
+      style={{ backgroundColor }}
       onMouseEnter={() => onMouseEnter && onMouseEnter(courseCode)}
       onMouseLeave={() => onMouseLeave && onMouseLeave()}
     >
