@@ -1,18 +1,36 @@
-
 interface Props {
+  id: string;
   courseCode: string;
   courseName: string;
   credits: number;
   prereqs?: string[];
+  hoveredId?: string | null;
   hoveredCourse?: string | null;
   onMouseEnter?: (courseCode: string) => void;
   onMouseLeave?: () => void;
 }
 
-function Course({ courseCode, courseName, credits, prereqs, hoveredCourse, onMouseEnter, onMouseLeave }: Props) {
+function Course({
+  id,
+  courseCode,
+  courseName,
+  credits,
+  prereqs,
+  hoveredId,
+  hoveredCourse,
+  onMouseEnter,
+  onMouseLeave,
+}: Props) {
+  const isHighlighted = prereqs?.some(
+    (prereq) => prereq === hoveredCourse
+  );
+  const backgroundColor = isHighlighted
+    ? "lightgreen"
+    : id === hoveredId
+      ? "lightblue"
+      : "lightgray";
 
-  const isHighlighted = prereqs?.some(prereq => prereq === hoveredCourse && courseCode !== "Elective");
-  const backgroundColor = isHighlighted ? "lightgreen" : hoveredCourse === courseCode ? "lightblue" : "lightgray";
+  // backgroundColor: prereqs?.some(prereq => prereq === hoveredCourse) ? "lightgreen" : hoveredCourse === courseCode ? "lightblue" : "lightgray",
 
   return (
     <button
