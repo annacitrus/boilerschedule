@@ -3,6 +3,7 @@ import dataScience from "./DataScience";
 import artificalIntelligenceScience from "./artificalIntelligenceScience";
 import mechanicalEngineering from "./mechanicalEngineering";
 import electricalEngineering from "./electricalEngineering";
+import computerScience from "./computerScience";
 
 export type Major = {
     path: string;
@@ -16,4 +17,5 @@ export const majors: Major[] = [
     { path: "science-artifical-intelligence", label: "Artificial Intelligence (College of Science)", college: "College of Science", data: artificalIntelligenceScience },
     { path: "mechanical-engineering", label: "Mechanical Engineering", college: "College of Engineering", data: mechanicalEngineering },
     { path: "electrical-engineering", label: "Electrical Engineering", college: "College of Engineering", data: electricalEngineering },
+    { path: "computer-science", label: "Computer Science", college: "College of Science", data: computerScience },
 ];
