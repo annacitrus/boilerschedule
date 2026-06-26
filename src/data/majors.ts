@@ -6,6 +6,7 @@ import computerScience from "./computerScience";
 import integratedBusinessEngineering from "./integratedBusinessEngineering";
 import aerospaceEngineering from "./aerospaceEngineering";
 import computerEngineering from "./computerEngineering";
+import finance from "./finance";
 
 export type Major = {
     path: string;
@@ -22,4 +23,5 @@ export const majors: Major[] = [
     { path: "integrated-business-engineering", label: "Integrated Business and Engineering", college: "Daniels School of Business", data: integratedBusinessEngineering },
     { path: "aerospace-engineering", label: "Aerospace Engineering", college: "College of Engineering", data: aerospaceEngineering },
     { path: "computer-engineering", label: "Computer Engineering", college: "College of Engineering", data: computerEngineering },
+    { path: "finance", label: "Finance", college: "Daniels School of Business", data: finance },
 ];
