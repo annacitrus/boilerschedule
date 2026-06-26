@@ -1,10 +1,11 @@
 import { MajorData } from "./types";
-import dataScience from "./DataScience";
+import dataScience from "./dataScience";
 import artificalIntelligenceScience from "./artificalIntelligenceScience";
-import mechanicalEngineering from "./mechanicalEngineering";
 import electricalEngineering from "./electricalEngineering";
 import computerScience from "./computerScience";
 import integratedBusinessEngineering from "./integratedBusinessEngineering";
+import aerospaceEngineering from "./aerospaceEngineering";
+import computerEngineering from "./computerEngineering";
 
 export type Major = {
     path: string;
@@ -16,8 +17,9 @@ export type Major = {
 export const majors: Major[] = [
     { path: "data-science", label: "Data Science", college: "College of Science", data: dataScience },
     { path: "science-artifical-intelligence", label: "Artificial Intelligence (College of Science)", college: "College of Science", data: artificalIntelligenceScience },
-    { path: "mechanical-engineering", label: "Mechanical Engineering", college: "College of Engineering", data: mechanicalEngineering },
     { path: "electrical-engineering", label: "Electrical Engineering", college: "College of Engineering", data: electricalEngineering },
     { path: "computer-science", label: "Computer Science", college: "College of Science", data: computerScience },
-    { path: "integrated-business-engineering", label: "Integrated Business and Engineering", college: "Polytechnic Institute", data: integratedBusinessEngineering },
+    { path: "integrated-business-engineering", label: "Integrated Business and Engineering", college: "Daniels School of Business", data: integratedBusinessEngineering },
+    { path: "aerospace-engineering", label: "Aerospace Engineering", college: "College of Engineering", data: aerospaceEngineering },
+    { path: "computer-engineering", label: "Computer Engineering", college: "College of Engineering", data: computerEngineering },
 ];
