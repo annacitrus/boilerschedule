@@ -37,35 +37,12 @@ import myMajor from "./myMajor";
 { path: "my-major", label: "My Major", college: "College of X", data: myMajor }
 ```
 
----
-
-## Course Key Naming Convention
-
-Matches Purdue's old 3-digit course numbering (pre-5-digit expansion):
-
-| Purdue catalog code | Key |
-|---------------------|-----|
-| `MA 26100` | `MA261` |
-| `CS 18000` | `CS180` |
-| `ME 20000` | `ME200` |
-| `ME 30801` (lab, ends in `01`) | `ME308L` |
-| `ME 32301` (lab, ends in `01`) | `ME323L` |
-| `CHM 11510` (non-`00` ending) | `CHM115` |
-| `CHM 11520` (lab) | `CHM115L` |
-| `ECE 20001` | `ECE200` |
-| `ECE 20007` (lab) | `ECE200L` |
-
-**Rule:** For 5-digit codes ending in `00`, drop the last two digits. For lab sections (ending in `01`, `07`, etc.), use the base 3-digit key + `L` suffix. Use `"Quoted String"` keys for selectives/placeholders.
 
 ---
 
 ## Prerequisite Lookup
 
 `src/data/course-catalog.json` is the prereq source. Each entry has a `prerequisite_courses` string array.
-
-**Departments present in the catalog** (can look up prereqs): `MA`, `PHYS`, `ECON`, `STAT`, `CS`, `BIOL`, `CHEM` (limited), and others.
-
-**Departments NOT in the catalog** (leave `prereqs: []`): `ME`, `ECE`, `MSE`, `ENGR`, `CHM 115xx` series.
 
 To compute prereqs for a course:
 1. Look up its `prerequisite_courses` in `course-catalog.json`
